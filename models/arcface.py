@@ -15,9 +15,14 @@ class ArcFace:
         self.taskname = "recognition"
 
         if session is None:
+            providers = (
+                ["CUDAExecutionProvider", "CPUExecutionProvider"]
+                if "CUDAExecutionProvider" in onnxruntime.get_available_providers()
+                else ["CPUExecutionProvider"]
+            )
             self.session = onnxruntime.InferenceSession(
                 model_path,
-                providers=["CUDAExecutionProvider", "CPUExecutionProvider"],
+                providers=providers,
             )
         input_cfg = self.session.get_inputs()[0]
         input_shape = input_cfg.shape

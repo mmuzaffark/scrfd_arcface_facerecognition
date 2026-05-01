@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wsl -e python3 -c \"import onnxruntime as ort; print\\(ort.get_available_providers\\(\\)\\)\")",
+      "Bash(wsl -e bash -c \"cd ~/scrfd_arcface_facerecognition && source .venv/bin/activate && python -c \\\\\"import onnxruntime as ort; print\\(ort.get_available_providers\\(\\)\\)\\\\\"\")",
+      "PowerShell(wsl sudo apt install -y libxcb-xinerama0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-shape0 libxcb-xfixes0)",
+      "PowerShell(wsl -- sudo apt install -y libxcb-xinerama0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-shape0 libxcb-xfixes0 2>&1)"
+    ]
+  }
+}

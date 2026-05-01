@@ -56,9 +56,14 @@ class SCRFD:
             model_path (str): Path to .onnx model.
         """
         try:
+            providers = (
+                ["CUDAExecutionProvider", "CPUExecutionProvider"]
+                if "CUDAExecutionProvider" in onnxruntime.get_available_providers()
+                else ["CPUExecutionProvider"]
+            )
             self.session = onnxruntime.InferenceSession(
                 model_path,
-                providers=["CUDAExecutionProvider", "CPUExecutionProvider"]
+                providers=providers,
             )
             # Get model info
             self.output_names = [x.name for x in self.session.get_outputs()]
